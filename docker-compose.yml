@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  base:
+    build:
+      args:
+        UID: ${UID}
+        GID: ${GID}
+        USER: ${USER}
+      context: .
+      dockerfile: Dockerfile
+    command: bash -c "bash"
+    container_name: ${USER}-Udacity-dev
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+      - TERM=xterm-256color
+    privileged: true
+    volumes:
+      - $PWD/src:/home/${USER}/ws/src
+    working_dir: /home/${USER}/ws
+  # dev:
+    # extends: base
+    # volumes: 
+      # - /home/${USER}/ws
+
